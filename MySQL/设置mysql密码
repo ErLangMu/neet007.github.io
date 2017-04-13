@@ -1,0 +1,69 @@
+系统初始化后
+
+```
+#mysql -u root -p
+"temporary password"
+mysql>set password （for root@loacalhost） = password ('新密码')
+mysql>exit
+```
+
+系统初始化后，安全设置
+mysql_secure_installation：
+
+```
+# /usr/local/mysql/bin/mysql_secure_installation
+根据屏幕提示进行相关操作
+```
+
+mysqladmin：
+
+```
+# mysqladmin -u root password 新密码（适合mysql5.6及以下版本，初始化时root无密码情况）
+# mysqladmin -u root -p password 新密码
+输入旧密码
+```
+
+**慎重：**
+skip-grant-tables
+跳跃权限表的限制，不用验证密码，直接登录
+
+```
+/etc/my.cnf
+[mysqld] 下面加上:
+skip-grant-tables
+重启数据库
+# service mysqld restart
+此时所有用户登录当前数据库都是免密码的
+# mysql -u root
+```
+修改密码
+```
+mysql>update mysql.user set authentication_string=password('新密码') where user='root' and Host = 'localhost';
+（其它方式都修改不了：set password、mysqladmin、alter user、update mysql.user password=，因为mysql5.7及以上版本的user表中无password字段）
+```
+```
+mysql>exit
+将配置文件中skip-grant-tables清除
+重启数据库
+```
+
+**推荐：**
+启动skip-grant-tables
+
+```
+# service mysql stop
+# mysqld_safe --skip-grant-tables --skip-networking &
+# mysql -u root
+mysql>修改密码（authentication_string=password('新密码')）;
+mysql> flush privileges;
+mysql>quit
+```
+
+**注：**
+此时修改的密码并不是真正的root在user表中的密码，需完善操作
+
+```
+mysql> alter user 'root'@'localhost' identified by '新密码';
+或者
+mysql> set password for 'root'@'localhost'=password('新密码');
+```
