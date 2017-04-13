@@ -26,7 +26,7 @@ SQL语句操作：
 
 ```
 sql语句结尾：；或\g 或\G
-退出mysql>：exit或ctrl+z（ctrl+C不起作用）
+退出mysql>：exit或quit或ctrl+z（ctrl+C不起作用）
 ```
 
 执行SQL语句脚本：
