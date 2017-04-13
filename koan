@@ -1,0 +1,20 @@
+1.功能：客户端通过cobbler重装操作系统
+
+2.客户端安装koan
+
+```
+# rpm -qa|grep koan
+(随部署操作系统，安装koan暂时不会)
+# yum -y install epel-release
+# yum -y install koan
+```
+
+3.koan相关命令操作
+
+```
+# koan --server=cobbler服务器ip地址 --list=profiles
+# koan --server=cobbler服务器ip地址 --profile=cobbler引导菜单中相应profile名称 --replace-self
+# reboot
+```
+
+
