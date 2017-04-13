@@ -1,0 +1,28 @@
+注销：
+
+```
+# logout
+```
+
+重启：
+
+```
+# reboot
+```
+
+关机：
+
+```
+# shutdown -h now
+# shutdown now
+```
+
+定时：
+
+```
+# shutdown -r now
+# shutdown -r +5
+# shutdown -r 23:59
+# shutdown +5
+# shutdown 23:59
+```
