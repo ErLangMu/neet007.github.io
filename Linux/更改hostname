@@ -1,0 +1,43 @@
+**更改hostname：**
+
+查看：
+
+```
+# hostname
+# cat /proc/sys/kernel/hostname
+# uname -a
+```
+
+临时更改：
+
+```
+# hostname 新名字
+```
+
+
+永久更改：
+centos7及以上：/etc/hostname
+centos6及以下：/etc/sysconfig/network
+（与/etc/hosts无关）
+
+```
+# vim /etc/hostname
+新名字
+或者
+# hostnamectl --static set-hostname 新名字
+# reboot
+```
+
+**注：**
+hostname命名规则（同域名，例如www.baidu.com）：
+只显示第一个.前面的名称，即主机名
+一、域名中只能包含以下字符：   
+
+ - 26个英文字母
+ - “0，1，2，3，4，5，6，7，8，9”十个数字   
+ - “-”（英文中的连词号）
+
+二、域名中字符的组合规则：   
+
+ - 在域名中，不区分英文字母的大小写
+ - 对于一个域名的长度是有一定限制的
