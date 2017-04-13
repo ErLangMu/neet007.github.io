@@ -1,0 +1,6 @@
+```
+%packages
+@gnome-desktop
+@X Window System
+%end
+```
